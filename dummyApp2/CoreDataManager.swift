@@ -8,7 +8,7 @@ class CoreDataManager{
     
     //2. Container
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Note")
+        let container = NSPersistentContainer(name: "Model")
         
         container.loadPersistentStores{(storeDescription, error) in
             if let error = error as NSError?{
