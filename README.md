@@ -1,131 +1,46 @@
-# 📝 NotesApp — iOS Notes App
+# 🛒 GroceryMart — iOS Shopping App
+> App #3 of my iOS Development Journey | Built with Swift + UIKit | Zero Storyboards
  
-> App #4 of my iOS Development Journey | Built with Swift + UIKit | Zero Storyboards
+## 📱 Overview
+A fully programmatic iOS grocery app to browse products by category and manage a real-time shopping cart with shared state across all screens.
  
 ---
  
-## 📱 Overview
+## 🖥️ Screenshots
  
-NotesApp is a fully programmatic iOS notes app that lets users create, edit, delete, and search through notes — all persisted locally using CoreData. Built as part of my structured iOS curriculum to master `CoreData`, `UISearchController`, `UITextView`, and dual-mode view controllers.
+| Home | Product Detail | Cart |
+|---|---|---|
+| ![Home](Screenshots/home.png) | ![Detail](Screenshots/detail.png) | ![Cart](Screenshots/cart.png) |
  
 ---
  
 ## 🖥️ Screens
- 
-### 🏠 Note List Screen
-- `UITableView` with custom `NoteCell` showing title, preview, and date
-- `+` bar button to create a new note
-- Swipe-to-delete with CoreData sync
-- `UISearchController` for live title-based filtering
-- Empty state message when no notes exist
-- `viewWillAppear` re-fetch to always show the latest data
-### ✏️ Note Editor Screen
-- Title `UITextField` + body `UITextView`
-- Dual mode — **Create** when opened fresh, **Edit** when existing note is passed
-- Pre-fills fields in edit mode
-- Live character count label updating as user types
-- Save bar button — calls `createNote` or `updateNote` based on mode
-- Pops back to list on save
----
- 
+- **Home** — Category chips (`UICollectionView`) + filtered product list (`UITableView`) + live cart badge + pull to refresh
+- **Product Detail** — Large SF Symbol, name, price, description, Add to Cart
+- **Cart Modal** — All items, live total, swipe-to-delete, empty state
 ## ⚙️ Features
- 
 | Feature | Detail |
 |---|---|
-| CoreData persistence | Notes saved locally across app launches |
-| Create & Edit mode | Single `NoteEditorVC` handles both via `existingNote` optional |
-| Live search | `UISearchController` filters by title in real time |
-| Swipe to delete | Native swipe action synced with CoreData |
-| Character count | Live label updates as user types in editor |
-| Empty state | Friendly message shown when no notes exist |
-| Global styling | Warm Minimal palette via `AppColors.swift` + `SceneDelegate` |
- 
----
+| Category filtering | Animated via Diffable Data Source |
+| Shared cart state | `CartManager` singleton across all screens |
+| Live badge count | Updates on every add/remove |
+| Swipe to delete | Native `UITableView` swipe action |
+| Pull to refresh | `UIRefreshControl` on Home |
  
 ## 🛠️ Tech Stack
- 
-- **Language:** Swift
-- **Framework:** UIKit
-- **UI Approach:** 100% Programmatic — Zero Storyboards
-- **Layout:** `NSLayoutConstraint` + `UIStackView`
-- **Persistence:** CoreData (`NSManagedObject`, `NSFetchRequest`, `viewContext`)
-- **Architecture:** Singleton pattern (`CoreDataManager`)
-- **Navigation:** `UINavigationController` (push)
-- **Search:** `UISearchController`
-- **Custom Cells:** `UITableViewCell` subclass (`NoteCell`)
----
+Swift · UIKit · Programmatic UI · `NSDiffableDataSource` · `NSDiffableDataSourceSnapshot` · Singleton (`CartManager`) · `UINavigationController` · Modal presentation · Custom cells
  
 ## 🧠 Concepts Practiced
- 
-| Concept | Where Used |
-|---|---|
-| CoreData stack | `CoreDataManager.swift` |
-| `NSManagedObject` | `Note` entity |
-| `NSFetchRequest` | `fetchNotes()` |
-| `viewContext` save | `saveContext()` |
-| Dual-mode VC | `NoteEditorVC` — create & edit via optional |
-| `UISearchController` | `NoteListVC` |
-| Dual array filtering | `allNotes` + `filteredNotes` |
-| `UITextView` | `NoteEditorVC` body input |
-| Character count | `NoteEditorVC` live label |
-| `viewWillAppear` refresh | `NoteListVC` re-fetch on appear |
-| Swipe to delete | `NoteListVC` + CoreData sync |
-| Empty state | `NoteListVC` |
-| Global styling | `AppColors.swift` + `SceneDelegate` |
- 
----
- 
-## 📁 Project Structure
- 
-```
-NotesApp/
-├── Models/
-│   └── Notes.xcdatamodeld
-├── Managers/
-│   └── CoreDataManager.swift
-├── Controllers/
-│   ├── NoteListVC.swift
-│   └── NoteEditorVC.swift
-├── Cells/
-│   └── NoteCell.swift
-└── Utilities/
-    └── AppColors.swift
-```
- 
----
+`UITableView` datasource/delegate · Custom `UITableViewCell` · `UICollectionView` · Diffable Data Source · Swipe to delete · Pull to refresh · Nav bar badge · Singleton pattern · Modal + push navigation
  
 ## 🚀 Getting Started
- 
-1. Clone the repo
-   ```bash
-   git clone https://github.com/vermagagan/NotesApp-iOS.git
-   ```
-2. Open `NotesApp.xcodeproj` in Xcode
-3. Run on Simulator (iOS 16+)
-> No third-party dependencies. No CocoaPods. Pure UIKit + CoreData.
- 
----
- 
-## 🗺️ iOS Journey Series
- 
-| # | App | Key Concepts |
-|---|---|---|
-| 1 | Personal Business Card App | Programmatic UI, Auto Layout, UserDefaults, Modals |
-| 2 | FitLife Onboarding App | UIPageViewController, UITabBarController, SceneDelegate, CATransition |
-| 3 | GroceryMart | UITableView, UICollectionView, Diffable Data Source, Singleton |
-| **4** | **NotesApp** | **CoreData, UISearchController, Dual-mode VC, UITextView** |
- 
----
+```bash
+git clone https://github.com/vermagagan/GroceryMart-iOS.git
+```
+Open `GroceryMart.xcodeproj` in Xcode · Run on iOS 16+ · No dependencies.
  
 ## 👨‍💻 Author
+**vermagagan** · Aspiring iOS Developer · Building in public
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/vermagagan) [![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/vermagagan)
  
-**Gagan**
-Aspiring iOS Developer | Building in public
- 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/vermagagan)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/vermagagan)
- 
----
- 
-> *"Every app in this series is more complex than the last. This one had CoreData persistence, a dual-mode editor, live search filtering, and zero storyboards."*
- 
+> *"Custom cells, a shared singleton, animated diffable updates, and zero storyboards."*
